@@ -7,14 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -33,8 +38,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+   /// Notification
+        FirebaseMessaging.getInstance().subscribeToTopic("zain")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                   @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                       Log.e("zz","done");
+                   }
+                   });
 
-        img = findViewById(R.id.imageview);
+         img = findViewById(R.id.imageview);
         addImg = findViewById(R.id.btn_add_image);
         uploadImg = findViewById(R.id.btn_upload);
         progressBar = findViewById(R.id.progressBar);

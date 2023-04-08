@@ -37,7 +37,7 @@ public class MainActivity2Analytics extends AppCompatActivity {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         food = findViewById(R.id.foodbtn);
-        screenTrack("Home Screen");
+        screenTrack("HomeScreen");
 
         food.setOnClickListener(new View.OnClickListener() {
             @Override
